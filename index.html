@@ -30,9 +30,23 @@
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the array.
     // 🧠 As you have done in the past, declare a variable before you start looping, to accumulate the result.
+    
     function sumNumsFor(nums) {
-
+      let sum1 = 0;
+      if(nums.length === 0) {
+        return sum1
+      } else {
+        for(let i = 0; i < nums.length; i++){
+        if (nums[i] === 13) {
+          return "I'm too superstitious!"
+        } else if(typeof nums[i] === 'number'){
+            sum1 += nums[i]
+          }
+        }
+      }
+      return sum1
     }
+    
 
     // 👉 CHALLENGE 2
     // 🧠 The function stripVowels takes a string, strips all lowcase vowel letters (a,e,i,o,u) from it and returns it.
@@ -41,7 +55,17 @@
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the characters of the string.
     function stripVowels(str) {
-
+    let letters = str.split(''); 
+    let newLetters = []
+    for(let i = 0; i < letters.length; i++) {
+      // console.log(i, letters[i])
+      if(letters[i] !== 'a' && letters[i] !== 'e' &&letters[i] !== 'i' && letters[i] !== 'o' && letters[i] !== 'u') {
+      let extractedLetter = letters[i];
+      newLetters.push(extractedLetter);
+      }
+    }
+    let newWord = newLetters.join('')
+    return newWord
     }
 
     // 👉 CHALLENGE 3
@@ -49,8 +73,22 @@
     // 🧠 Examples of usage:
     // sumNumsWhile([1, 2, 3]) // should return 6
     // sumNumsWhile([1, 2, 13]) // should return "I'm too superstitious!"
-    function sumNumsWhile() {
-
+    function sumNumsWhile(nums) {
+      let sum3 = 0;
+      let i = 0;
+        if(nums.length === 0) {
+          return sum3;
+        } else {
+        while(i < nums.length){
+          if(nums[i] === 13) {
+            return "I'm too superstitious!"
+          } else if(typeof nums[i] === 'number') {
+            sum3 += nums[i]
+          }
+          i++;
+        }
+      }
+      return sum3
     }
 
     // 👉 CHALLENGE 4
@@ -70,10 +108,16 @@
     // 🧠 There are many ways to solve this, but practice using a while loop.
     // 🧠 Work out using pen and paper how the round number and the lifePoints change after each round.
     // 🧠 As long as there are lifePoints, decrease lifePoints by round number, and increase round number by one.
-    function fightMonsters() {
-
+    function fightMonsters(lifePoints) {
+    let roundNum = 1;
+    while (lifePoints > 0) {
+      lifePoints -= roundNum;
+      if(lifePoints <= 0){
+      return `You died in round ${roundNum}`
+      } else roundNum++
     }
-
+    }
+    console.log(fightMonsters(4))
     // 👉 CHALLENGE 5
     // 🧠 The function findEvenNums takes an array of integers as its argument.
     // 🧠 It returns a new array containing the even numbers found in the original array, in the same order.
@@ -81,8 +125,18 @@
     // findEvenNums([0, 1, 2, 3, 4]) // should return [0, 2, 4]
     // ❗ Notes:
     // 🧠 Use any kind of loop you'd like and the push method to populate the array of even numbers.
-    function findEvenNums() {
-
+    function findEvenNums(interArr) {
+      let newArray = []
+      for(let i = 0; i < interArr.length; i++) {
+        if(interArr[i] === 0) {
+        newArray.push(interArr[i])
+        console.log(newArray)
+        } else if(interArr[i] % 2 === 0) {
+          newArray.push(interArr[i]);
+          console.log(newArray)
+        }
+      }
+      return newArray
     }
 
     // 👉 CHALLENGE 6
@@ -92,8 +146,21 @@
     // 🧠 Ages in the subarrays should appear in the same order they appeared in the original array.
     // 🧠 Examples of usage:
     // separateAges([31, 12, 25, 65, 84, 20]) // should return [[12, 20], [31, 25, 65, 84]]
-    function separateAges() {
-
+    function separateAges(ageArray) {
+    let under21 = [];
+    let over21 = [];
+    let finalArr6 = [];
+    
+    for(let i = 0; i < ageArray.length; i++) {
+      if (ageArray[i] < 21) {
+        under21.push(ageArray[i])
+      } else {
+        over21.push(ageArray[i])
+      }
+    }
+    finalArr6 = [under21, over21];
+    return finalArr6;
+    console.log(finalArr6)
     }
 
     // 👉 CHALLENGE 7
@@ -103,8 +170,20 @@
     // 🧠 The "tail" prop contains an array holding the elements of the array after the first one.
     // 🧠 Examples of usage:
     // headAndTail([1, 2, 3]) // should return { head: 1, tail: [2, 3] }
-    function headAndTail() {
+    function headAndTail(snakeArr) {
+      let head ;
+      let tail = [];
+      let headAndTailObj = {};
 
+      for(let i = 0; i < snakeArr.length; i++) {
+        if(i === 0) {
+          head = snakeArr[i]
+        } else {
+          tail.push(snakeArr[i]);
+        }
+      }
+      headAndTailObj = {"head":head, "tail": tail};
+      return headAndTailObj
     }
 
     // 👉 CHALLENGE 8
@@ -114,8 +193,20 @@
     // nestedLoops(['hello', 'goodbye']) // should return ['hEllO', 'gOOdbyE']
     // ❗ Notes:
     // 🧠 To capitalize a string you can use its toUpperCase method: "a".toUpperCase() returns "A"
-    function nestedLoops() {
-
+    function nestedLoops(stringsArr) {
+      let sepLetters
+      let capLettersArr = []
+      for (let i = 0; i < stringsArr.length; i++){
+        sepLetters = stringsArr[i].split('')
+          for (let j = 0; j < sepLetters.length; j++){
+            if(sepLetters[j] === "a" || sepLetters[j] === "e" || sepLetters[j] === "i" || sepLetters[j] === "o" || sepLetters[j] === "u") {
+              sepLetters[j] = sepLetters[j].toUpperCase()
+            } 
+          }
+          let newword = sepLetters.join('')
+          capLettersArr.push(newword);
+      }
+      return capLettersArr
     }
 
     // 👉 CHALLENGE 9
@@ -128,8 +219,17 @@
     // ❗ Notes:
     // 🧠 Practice using pop and slice.
     // 🧠 Note that pop modifies the original array in place and returns the "popped" element, whereas slice gives us a brand new array.
-    function crazyTrimmer(arr) {
-
+    function crazyTrimmer(arr9) {
+    for( let i = 0; i < arr9.length; i++){
+      if(arr9.length % 2 === 0) {
+        arr9.pop();
+        return arr9;
+      } else {
+        arr9.pop();
+        arr9.shift();
+        return arr9
+      }
+    }
     }
 
     // 🧪 TESTS, do not work below this line
